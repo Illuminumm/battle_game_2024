@@ -36,6 +36,10 @@ void CannonBall::Update() {
       continue;
     }
     if (unit.second->IsHit(position_)) {
+      auto launcher = game_core_->GetUnit(unit_id_);
+      if(launcher->attack_speed_relevant_()){
+        launcher->AddAttackSpeed();
+      }
       game_core_->PushEventDealDamage(unit.first, id_, damage_scale_ * 10.0f);
       should_die = true;
     }

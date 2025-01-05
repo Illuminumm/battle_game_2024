@@ -100,6 +100,14 @@ Rocket_Launcher::Rocket_Launcher(GameCore *game_core, uint32_t id, uint32_t play
   }
 }
 
+bool Rocket_Launcher::attack_speed_relevant_() {
+  return true;
+}
+
+void Rocket_Launcher::AddAttackSpeed(){
+    attack_speed_ += 0.1f;
+}
+
 void Rocket_Launcher::Render() {
   battle_game::SetTransformation(position_, rotation_);
   battle_game::SetTexture(0);
@@ -113,6 +121,7 @@ void Rocket_Launcher::Update() {
   TankMove(3.0f, glm::radians(180.0f));
   TurretRotate();
   Fire();
+  if(attack_speed_ > 0.8f) attack_speed_ -= 0.003f;
 }
 
 void Rocket_Launcher::TankMove(float move_speed, float rotate_angular_speed) {
@@ -177,7 +186,7 @@ void Rocket_Launcher::Fire() {
             position_ + Rotate({-0.3f, 1.0f}, turret_rotation_),
             turret_rotation_, GetDamageScale() / 3.0f, velocity);
         // fire three bullets at once, but with 1/3 damage.
-        fire_count_down_ = kTickPerSecond * 3 / 2;  // Fire interval extended to 1.5 second.
+        fire_count_down_ = static_cast<int>(1.0f * kTickPerSecond / attack_speed_);  // Fire interval extended to 1.5 second.
       }
     }
   }

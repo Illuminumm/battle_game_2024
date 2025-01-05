@@ -124,4 +124,8 @@ const char *Unit::UnitName() const {
 const char *Unit::Author() const {
   return "Unknown Author";
 }
+
+bool Unit::attack_speed_relevant_() {
+  return false;
+}
 }  // namespace battle_game
