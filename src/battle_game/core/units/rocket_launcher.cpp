@@ -105,7 +105,7 @@ bool Rocket_Launcher::attack_speed_relevant_() {
 }
 
 void Rocket_Launcher::AddAttackSpeed(){
-    attack_speed_ += 0.1f;
+    if(attack_speed_ <= 2.0f) attack_speed_ += 0.1f;
 }
 
 void Rocket_Launcher::Render() {
