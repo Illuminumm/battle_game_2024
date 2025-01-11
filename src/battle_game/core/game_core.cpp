@@ -36,6 +36,7 @@ void GameCore::Update() {
   }
   for (auto &units : units_) {
     units.second->Update();
+    units.second->Regenerate();
   }
   for (auto &particle : particles_) {
     if (IsOutOfRange(particle.second->GetPosition())) {

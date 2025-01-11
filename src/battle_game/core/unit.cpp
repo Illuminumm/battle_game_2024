@@ -89,6 +89,11 @@ void Unit::HideLifeBar() {
   lifebar_display_ = false;
 }
 
+void Unit::Regenerate() {
+  if(health_ < 1.00f) health_ += regen_/60;
+  health_ = std::min(health_, 1.0f);
+}
+
 void Unit::RenderLifeBar() {
   if (lifebar_display_) {
     auto parent_unit = game_core_->GetUnit(id_);

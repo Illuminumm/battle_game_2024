@@ -56,6 +56,7 @@ class Unit : public Object {
 
   void ShowLifeBar();
   void HideLifeBar();
+  void Regenerate();
   virtual void RenderLifeBar();
 
   /*
@@ -84,6 +85,7 @@ class Unit : public Object {
  protected:
   uint32_t player_id_{};
   float health_{1.0f};
+  float regen_{0.01f};
   bool lifebar_display_{true};
   glm::vec2 lifebar_offset_{};
   float lifebar_length_{2.4f};
